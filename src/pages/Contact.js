@@ -69,8 +69,8 @@ const Contact = () => {
               </p>
             </div>
             
-            <Card className="bg-dark-custom border-0 shadow-cyan">
-              <Card.Body className="p-5">
+            <Card className="blog-card border-0 shadow-cyan">
+              <Card.Body className="blog-card-body">
                 <Form onSubmit={handleSubmit}>
                   <Row>
                     <Col md={6}>

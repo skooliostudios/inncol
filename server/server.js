@@ -11,6 +11,10 @@ dotenv.config();
 
 const app = express();
 
+// Trust proxy - needed when behind reverse proxy/load balancer
+// This allows express-rate-limit to correctly identify users by IP
+app.set('trust proxy', 1);
+
 // Security middleware
 app.use(helmet({
   contentSecurityPolicy: false // Allow for development

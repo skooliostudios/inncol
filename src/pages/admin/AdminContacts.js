@@ -112,7 +112,7 @@ const AdminContacts = () => {
             <Col md={3} lg={2} className="p-0">
               <AdminSidebar />
             </Col>
-            <Col md={9} lg={10} className="p-4">
+            <Col md={9} lg={10} className="p-4 admin-main-content">
               <div className="text-center">
                 <div className="spinner-custom mx-auto"></div>
                 <p className="text-white mt-3">Loading contact messages...</p>
@@ -131,7 +131,7 @@ const AdminContacts = () => {
           <Col md={3} lg={2} className="p-0">
             <AdminSidebar />
           </Col>
-          <Col md={9} lg={10} className="p-4">
+          <Col md={9} lg={10} className="p-4 admin-main-content">
             <div className="mb-4">
               <h1 className="text-white">Contact Messages</h1>
               <p className="text-white-50">View and respond to customer inquiries</p>

@@ -35,7 +35,7 @@ const AdminDashboard = () => {
           <Col md={3} lg={2} className="p-0">
             <AdminSidebar />
           </Col>
-          <Col md={9} lg={10} className="p-4">
+          <Col md={9} lg={10} className="p-4 admin-main-content">
             <div className="mb-4">
               <h1 className="text-white">Dashboard</h1>
               <p className="text-white-50">Welcome to your admin dashboard</p>
@@ -48,76 +48,76 @@ const AdminDashboard = () => {
             ) : (
               <Row>
                 <Col lg={3} md={6} className="mb-4">
-                  <Card className="bg-dark-custom border-cyan">
+                  <Card className="bg-white border-0">
                     <Card.Body>
                       <div className="d-flex justify-content-between">
                         <div>
-                          <h6 className="text-white-50">Total Blogs</h6>
-                          <h2 className="text-cyan">{stats.totalBlogs}</h2>
+                          <h6 className="text-muted">Total Blogs</h6>
+                          <h2 className="text-dark">{stats.totalBlogs}</h2>
                         </div>
-                        <div className="text-cyan">
+                        <div className="text-primary">
                           <i className="fas fa-blog"></i>
                         </div>
                       </div>
                       <Link to="/admin/blogs" className="text-decoration-none">
-                        <small className="text-cyan">View Details →</small>
+                        <small className="text-primary">View Details →</small>
                       </Link>
                     </Card.Body>
                   </Card>
                 </Col>
 
                 <Col lg={3} md={6} className="mb-4">
-                  <Card className="bg-dark-custom border-cyan">
+                  <Card className="bg-white border-0">
                     <Card.Body>
                       <div className="d-flex justify-content-between">
                         <div>
-                          <h6 className="text-white-50">Published</h6>
-                          <h2 className="text-cyan">{stats.publishedBlogs}</h2>
+                          <h6 className="text-muted">Published</h6>
+                          <h2 className="text-dark">{stats.publishedBlogs}</h2>
                         </div>
-                        <div className="text-cyan">
+                        <div className="text-primary">
                           <i className="fas fa-check-circle"></i>
                         </div>
                       </div>
                       <Link to="/admin/blogs" className="text-decoration-none">
-                        <small className="text-cyan">Manage Blogs →</small>
+                        <small className="text-primary">Manage Blogs →</small>
                       </Link>
                     </Card.Body>
                   </Card>
                 </Col>
 
                 <Col lg={3} md={6} className="mb-4">
-                  <Card className="bg-dark-custom border-cyan">
+                  <Card className="bg-white border-0">
                     <Card.Body>
                       <div className="d-flex justify-content-between">
                         <div>
-                          <h6 className="text-white-50">Drafts</h6>
-                          <h2 className="text-cyan">{stats.draftBlogs}</h2>
+                          <h6 className="text-muted">Drafts</h6>
+                          <h2 className="text-dark">{stats.draftBlogs}</h2>
                         </div>
-                        <div className="text-cyan">
+                        <div className="text-primary">
                           <i className="fas fa-edit"></i>
                         </div>
                       </div>
                       <Link to="/admin/blogs" className="text-decoration-none">
-                        <small className="text-cyan">Edit Drafts →</small>
+                        <small className="text-primary">Edit Drafts →</small>
                       </Link>
                     </Card.Body>
                   </Card>
                 </Col>
 
                 <Col lg={3} md={6} className="mb-4">
-                  <Card className="bg-dark-custom border-cyan">
+                  <Card className="bg-white border-0">
                     <Card.Body>
                       <div className="d-flex justify-content-between">
                         <div>
-                          <h6 className="text-white-50">Contact Messages</h6>
-                          <h2 className="text-cyan">{stats.totalContacts}</h2>
+                          <h6 className="text-muted">Contact Messages</h6>
+                          <h2 className="text-dark">{stats.totalContacts}</h2>
                         </div>
-                        <div className="text-cyan">
+                        <div className="text-primary">
                           <i className="fas fa-envelope"></i>
                         </div>
                       </div>
                       <Link to="/admin/contacts" className="text-decoration-none">
-                        <small className="text-cyan">View Messages →</small>
+                        <small className="text-primary">View Messages →</small>
                       </Link>
                     </Card.Body>
                   </Card>
@@ -134,10 +134,10 @@ const AdminDashboard = () => {
                       <Link to="/admin/blogs/create" className="btn btn-hero btn-hero-primary">
                         Create New Blog Post
                       </Link>
-                      <Link to="/admin/contacts" className="btn btn-hero btn-hero-secondary">
+                      <Link to="/admin/contacts" className="btn btn-hero btn-hero-primary">
                         View Contact Messages
                       </Link>
-                      <Link to="/admin/pages" className="btn btn-hero btn-hero-secondary">
+                      <Link to="/admin/pages" className="btn btn-hero btn-hero-primary">
                         Manage Pages
                       </Link>
                     </div>

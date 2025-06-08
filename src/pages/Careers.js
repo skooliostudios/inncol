@@ -17,9 +17,9 @@ const Careers = () => {
             
             <Row className="mb-5">
               <Col md={6} className="mb-4">
-                <div className="bg-dark-custom p-4 rounded-3 h-100">
-                  <h3 className="text-cyan mb-3">Why Work With Us?</h3>
-                  <ul className="text-white-50">
+                <div className="blog-card p-4 h-100">
+                  <h3 className="blog-title mb-3">Why Work With Us?</h3>
+                  <ul className="blog-excerpt">
                     <li>Competitive salary and benefits</li>
                     <li>Flexible working arrangements</li>
                     <li>Professional development opportunities</li>
@@ -29,12 +29,12 @@ const Careers = () => {
                 </div>
               </Col>
               <Col md={6} className="mb-4">
-                <div className="bg-dark-custom p-4 rounded-3 h-100">
-                  <h3 className="text-cyan mb-3">Open Positions</h3>
-                  <p className="text-white-50 mb-3">
+                <div className="blog-card p-4 h-100">
+                  <h3 className="blog-title mb-3">Open Positions</h3>
+                  <p className="blog-excerpt mb-3">
                     We're always looking for talented individuals to join our team:
                   </p>
-                  <ul className="text-white-50">
+                  <ul className="blog-excerpt">
                     <li>Digital Marketing Specialist</li>
                     <li>Creative Designer</li>
                     <li>Content Writer</li>
@@ -46,17 +46,19 @@ const Careers = () => {
             </Row>
             
             <div className="text-center">
-              <h2 className="text-white mb-4">Ready to Apply?</h2>
-              <p className="text-white-50 mb-4">
-                Send us your resume and portfolio, and let's discuss how you can contribute to our mission.
-              </p>
-              <Button 
-                as={Link} 
-                to="/contact" 
-                className="btn-hero btn-hero-primary"
-              >
-                Get In Touch
-              </Button>
+              <div className="blog-card p-5">
+                <h2 className="blog-title mb-4">Ready to Apply?</h2>
+                <p className="blog-excerpt mb-4">
+                  Send us your resume and portfolio, and let's discuss how you can contribute to our mission.
+                </p>
+                <Button 
+                  as={Link} 
+                  to="/contact" 
+                  className="btn-hero btn-hero-primary"
+                >
+                  Get In Touch
+                </Button>
+              </div>
             </div>
           </Col>
         </Row>

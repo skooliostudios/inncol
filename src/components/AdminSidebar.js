@@ -13,7 +13,7 @@ const AdminSidebar = () => {
 
   return (
     <div className="admin-sidebar">
-      <div className="p-3">
+      <div className="p-3 admin-sidebar-header">
         <h5 className="text-white mb-0">Admin Panel</h5>
         {user && (
           <small className="text-white-50">Welcome, {user.name}</small>

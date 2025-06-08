@@ -5,12 +5,13 @@ import { Toaster } from 'react-hot-toast';
 // Components
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import About from './pages/About';
+import Services from './pages/Services';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Contact from './pages/Contact';
 import Careers from './pages/Careers';
 import Login from './pages/Login';
+import Page from './pages/Page';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminBlogs from './pages/admin/AdminBlogs';
 import AdminContacts from './pages/admin/AdminContacts';
@@ -43,7 +44,7 @@ function App() {
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
@@ -81,6 +82,9 @@ function App() {
                 <AdminPages />
               </ProtectedRoute>
             } />
+            
+            {/* Dynamic Page Routes - This must be last to avoid conflicts */}
+            <Route path="/:slug" element={<Page />} />
           </Routes>
         </div>
       </Router>

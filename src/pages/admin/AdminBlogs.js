@@ -73,7 +73,7 @@ const AdminBlogs = () => {
             <Col md={3} lg={2} className="p-0">
               <AdminSidebar />
             </Col>
-            <Col md={9} lg={10} className="p-4">
+            <Col md={9} lg={10} className="p-4 admin-main-content">
               <div className="text-center">
                 <div className="spinner-custom mx-auto"></div>
                 <p className="text-white mt-3">Loading blogs...</p>
@@ -92,7 +92,7 @@ const AdminBlogs = () => {
           <Col md={3} lg={2} className="p-0">
             <AdminSidebar />
           </Col>
-          <Col md={9} lg={10} className="p-4">
+          <Col md={9} lg={10} className="p-4 admin-main-content">
             <div className="d-flex justify-content-between align-items-center mb-4">
               <div>
                 <h1 className="text-white">Blog Posts</h1>

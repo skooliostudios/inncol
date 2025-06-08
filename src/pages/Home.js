@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <div className="hero-section">
-      <div className="hero-pattern"></div>
       <Container className="hero-content">
         <Row className="min-vh-100 align-items-center justify-content-center text-center">
           <Col lg={10} xl={8}>
@@ -26,7 +25,7 @@ const Home = () => {
               </Button>
               <Button 
                 as={Link} 
-                to="/about" 
+                to="/services" 
                 className="btn-hero btn-hero-primary"
               >
                 Collaborate
