@@ -49,7 +49,7 @@ function App() {
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/careers" element={<Careers />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/admin-access-portal" element={<Login />} />
 
             {/* Admin Routes */}
             <Route path="/admin" element={

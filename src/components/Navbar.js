@@ -33,7 +33,7 @@ const CustomNavbar = () => {
             <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
           </Nav>
           <Nav>
-            {isAuthenticated ? (
+            {isAuthenticated && (
               <>
                 <Nav.Link as={Link} to="/admin">
                   Dashboard
@@ -47,10 +47,6 @@ const CustomNavbar = () => {
                   Logout
                 </Button>
               </>
-            ) : (
-              <Nav.Link as={Link} to="/login">
-                Admin Login
-              </Nav.Link>
             )}
           </Nav>
         </Navbar.Collapse>

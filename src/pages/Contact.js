@@ -16,6 +16,12 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
   const recaptchaRef = useRef();
 
+  // Debug: Log the environment variable
+  console.log('Environment variable loaded:', process.env.REACT_APP_RECAPTCHA_SITE_KEY);
+  
+  const actualSiteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY || "6LdEJmsrAAAAAChMhC-Rukx30aBQs3lib4Qks71y";
+  console.log('Actual site key being used:', actualSiteKey);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -156,7 +162,7 @@ const Contact = () => {
                   <div className="mb-4 d-flex justify-content-center">
                     <ReCAPTCHA
                       ref={recaptchaRef}
-                      sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY || "6LcXXXXXXXXXXXXXXXXXXXXXXXXXXX"}
+                      sitekey={actualSiteKey}
                       theme="dark"
                     />
                   </div>

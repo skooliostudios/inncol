@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema({
   },
   lastLogin: {
     type: Date
+  },
+  loginIP: {
+    type: String,
+    trim: true
   }
 }, {
   timestamps: true

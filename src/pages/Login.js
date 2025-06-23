@@ -42,7 +42,7 @@ const Login = () => {
   return (
     <div className="contact-section">
       <Container>
-        <Row className="justify-content-center align-items-center min-vh-100">
+        <Row className="justify-content-center" style={{ paddingTop: '120px', paddingBottom: '50px' }}>
           <Col md={6} lg={5}>
             <Card className="bg-dark-custom border-0 shadow-cyan">
               <Card.Body className="p-5">
@@ -93,12 +93,6 @@ const Login = () => {
                     </Button>
                   </div>
                 </Form>
-
-                <div className="text-center mt-4">
-                  <small className="text-white-50">
-                    Default credentials: admin@inncol.com / admin123
-                  </small>
-                </div>
               </Card.Body>
             </Card>
           </Col>

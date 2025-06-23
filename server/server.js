@@ -6,8 +6,9 @@ const path = require('path');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
-// Load environment variables
-dotenv.config();
+// Load environment variables - root first, then server (with override)
+dotenv.config({ path: path.join(__dirname, '..', '.env'), override: true });
+dotenv.config({ path: path.join(__dirname, '.env'), override: true });
 
 const app = express();
 

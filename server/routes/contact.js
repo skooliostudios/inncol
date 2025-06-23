@@ -17,8 +17,12 @@ router.post('/', [
   body('recaptcha', 'Please complete the reCAPTCHA').not().isEmpty()
 ], async (req, res) => {
   try {
+    console.log('Contact form submission received');
+    console.log('Request body:', req.body);
+    
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log('Validation errors:', errors.array());
       return res.status(400).json({ 
         message: 'Invalid input',
         errors: errors.array() 
@@ -26,9 +30,13 @@ router.post('/', [
     }
 
     const { name, email, phone, company, subject, message, recaptcha } = req.body;
+    console.log('reCAPTCHA token received:', recaptcha ? 'Yes' : 'No');
 
     // Verify reCAPTCHA
     try {
+      console.log('Server secret key:', process.env.RECAPTCHA_SECRET_KEY ? 'Present' : 'Missing');
+      console.log('Secret key value:', process.env.RECAPTCHA_SECRET_KEY);
+      
       const recaptchaResponse = await axios.post('https://www.google.com/recaptcha/api/siteverify', null, {
         params: {
           secret: process.env.RECAPTCHA_SECRET_KEY,
@@ -36,6 +44,8 @@ router.post('/', [
           remoteip: req.ip
         }
       });
+
+      console.log('reCAPTCHA verification result:', recaptchaResponse.data);
 
       if (!recaptchaResponse.data.success) {
         return res.status(400).json({ message: 'reCAPTCHA verification failed' });
@@ -62,7 +72,7 @@ router.post('/', [
     // Send notification email to admin (optional)
     if (process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       try {
-        const transporter = nodemailer.createTransporter({
+        const transporter = nodemailer.createTransport({
           host: process.env.EMAIL_HOST,
           port: process.env.EMAIL_PORT || 587,
           secure: false,
