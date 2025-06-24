@@ -59,20 +59,24 @@ const AdminContacts = () => {
 
     setSendingResponse(true);
     try {
-      await axios.post(`/api/admin/contacts/${selectedContact._id}/respond`, {
+      const response = await axios.post(`/api/admin/contacts/${selectedContact._id}/respond`, {
         message: responseMessage
       });
       
-      // Update the contact as responded
+      // Update the selectedContact with the new response data
+      setSelectedContact(response.data.contact);
+      
+      // Update the contact in the contacts list
       setContacts(contacts.map(contact => 
         contact._id === selectedContact._id 
-          ? { ...contact, isResponded: true, responseDate: new Date() }
+          ? response.data.contact
           : contact
       ));
       
       toast.success('Response sent successfully!');
-      setShowModal(false);
       setResponseMessage('');
+      
+      // Keep modal open to show the updated conversation thread
     } catch (error) {
       toast.error('Failed to send response');
     } finally {
@@ -230,17 +234,59 @@ const AdminContacts = () => {
               </Row>
               <Row className="mb-3">
                 <Col>
-                  <strong>Message:</strong>
-                  <div className="mt-2 p-3 bg-secondary rounded">
-                    {selectedContact.message}
-                  </div>
-                </Col>
-              </Row>
-              <Row className="mb-3">
-                <Col>
                   <strong>Received:</strong> {moment(selectedContact.createdAt).format('MMMM DD, YYYY at HH:mm')}
                 </Col>
               </Row>
+
+              {/* Conversation Thread */}
+              <div className="mb-4">
+                <h6 className="text-white mb-3">
+                  {selectedContact.responses && selectedContact.responses.length > 0 
+                    ? 'Conversation Thread' 
+                    : 'Original Message'
+                  }
+                </h6>
+                
+                {/* Original Message */}
+                <div className="mb-3 p-3 border border-info rounded">
+                  <div className="d-flex justify-content-between align-items-center mb-2">
+                    <small className="text-info">
+                      <strong>{selectedContact.name}</strong> (Customer)
+                    </small>
+                    <small className="text-white-50">
+                      {moment(selectedContact.createdAt).format('MMM DD, YYYY HH:mm')}
+                    </small>
+                  </div>
+                  <div className="text-white">
+                    {selectedContact.message}
+                  </div>
+                </div>
+
+                {/* Admin Responses */}
+                {selectedContact.responses && selectedContact.responses.length > 0 &&
+                  selectedContact.responses
+                    .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp))
+                    .map((response, index) => (
+                      <div key={index} className={`mb-3 p-3 border rounded ${
+                        response.sentBy === 'admin' ? 'border-success' : 'border-info'
+                      }`}>
+                        <div className="d-flex justify-content-between align-items-center mb-2">
+                          <small className={response.sentBy === 'admin' ? 'text-success' : 'text-info'}>
+                            <strong>
+                              {response.sentBy === 'admin' ? 'Admin (You)' : `${selectedContact.name} (Customer)`}
+                            </strong>
+                          </small>
+                          <small className="text-white-50">
+                            {moment(response.timestamp).format('MMM DD, YYYY HH:mm')}
+                          </small>
+                        </div>
+                        <div className="text-white">
+                          {response.message}
+                        </div>
+                      </div>
+                    ))
+                }
+              </div>
 
               <hr className="border-secondary" />
 

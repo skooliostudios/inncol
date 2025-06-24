@@ -119,7 +119,7 @@ router.post('/contacts/:id/respond', auth, async (req, res) => {
     // Send email response
     if (process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       try {
-        const transporter = nodemailer.createTransporter({
+        const transporter = nodemailer.createTransport({
           host: process.env.EMAIL_HOST,
           port: process.env.EMAIL_PORT || 587,
           secure: false,
@@ -147,6 +147,14 @@ router.post('/contacts/:id/respond', auth, async (req, res) => {
 
         await transporter.sendMail(mailOptions);
         
+        // Save response to conversation thread
+        contact.responses.push({
+          message: message,
+          sentBy: 'admin',
+          timestamp: new Date(),
+          adminUser: req.user._id
+        });
+        
         // Update contact as responded
         contact.isResponded = true;
         contact.responseDate = new Date();
@@ -167,6 +175,43 @@ router.post('/contacts/:id/respond', auth, async (req, res) => {
 
   } catch (error) {
     console.error('Error sending response:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// @route   POST /api/admin/contacts/:id/add-customer-reply
+// @desc    Add customer reply to conversation thread
+// @access  Private (Admin)
+router.post('/contacts/:id/add-customer-reply', auth, async (req, res) => {
+  try {
+    const { message } = req.body;
+    
+    if (!message) {
+      return res.status(400).json({ message: 'Reply message is required' });
+    }
+
+    const contact = await Contact.findById(req.params.id);
+    
+    if (!contact) {
+      return res.status(404).json({ message: 'Contact message not found' });
+    }
+
+    // Add customer reply to conversation thread
+    contact.responses.push({
+      message: message,
+      sentBy: 'customer',
+      timestamp: new Date()
+    });
+    
+    await contact.save();
+    
+    res.json({ 
+      message: 'Customer reply added successfully',
+      contact 
+    });
+
+  } catch (error) {
+    console.error('Error adding customer reply:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });

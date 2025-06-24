@@ -10,6 +10,10 @@ const rateLimit = require('express-rate-limit');
 dotenv.config({ path: path.join(__dirname, '..', '.env'), override: true });
 dotenv.config({ path: path.join(__dirname, '.env'), override: true });
 
+// Start email monitoring service
+const emailMonitor = require('./services/emailMonitor');
+emailMonitor.start();
+
 const app = express();
 
 // Trust proxy - needed when behind reverse proxy/load balancer

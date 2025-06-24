@@ -30,6 +30,27 @@ const contactSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  responses: [{
+    message: {
+      type: String,
+      required: true
+    },
+    sentBy: {
+      type: String,
+      required: true // 'admin' or 'customer'
+    },
+    timestamp: {
+      type: Date,
+      default: Date.now
+    },
+    adminUser: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'  // Reference to admin who sent the response
+    },
+    gmailMessageId: {
+      type: String  // Gmail message ID for tracking processed emails
+    }
+  }],
   isRead: {
     type: Boolean,
     default: false
